@@ -4,7 +4,7 @@
 duracao = 3;
 fs = 48000;
 % ====================================
-%           Área de Teste:
+%        4.1  Área de Teste:
 % ====================================
 %la = geraNota(440,fs,duracao,'serra');
 %la = geraNota(440,fs,duracao,'seno');
@@ -26,22 +26,35 @@ fs = 48000;
 
 %======================================
 
-function nota = geraNota(f0, fs, duracao, tipo)
-t = 0:1/fs:duracao; % Tempo de amostragem
+% ====================================
+%        4.2  Soma de Acordes
+% ====================================
+% Dó maior: Dó (261.63 Hz), Mi (329.63 Hz), Sol (392.00 Hz).
+% Lá menor: Lá (440 Hz), Dó (261.63 Hz), Mi (329.63 Hz).
+la = geraNota(440, fs, duracao, 'seno');
+sol = geraNota(392.00, fs, duracao, 'seno'); 
+do = geraNota(261.63,fs,duracao,'seno');
+mi = geraNota(329.63,fs,duracao,'seno');
 
-%Cria uma nota com base no tipo de onda
-    switch tipo
-        case 'seno'
-            nota = sin(2*pi*f0*t);
-        case 'quadrada'
-            nota = square(2*pi*f0*t);
-        case 'serra'
-            nota = sawtooth(2*pi*f0*t, 1);
-        case 'triangular'
-            nota = sawtooth(2*pi*f0*t, 0.5);
-        %case 'ruido'
-         %   nota = 0.5 * randn(size(t));
-        otherwise
-            error('Tipo de onda desconhecido');
-    end%$Switch
-end%%Function
+do_maior = do + mi + sol; %Exemplo de acorde sugerido no manual da Prática
+la_menor = la + do + mi;  %Exemplo de acorde sugerido no manual da Prática
+%sound(do_maior, fs);   %Representa um timbre mais grave
+%sound(la_menor, fs);
+tipos = {'seno','quadrada','serra','triangular'};
+
+while(true)
+        escolha = menu('Escolha um tipo de onda:', '1 - seno', '2 - quadrada', '3 - serra ', '4 - triangular','5 - Ruido','6 - Sair');
+        if(escolha ~= 6)
+            la = geraNota(440, fs, duracao, tipos{escolha});
+            sol = geraNota(392.00, fs, duracao, tipos{escolha}); 
+            do = geraNota(261.63,fs,duracao,tipos{escolha});
+            mi = geraNota(329.63,fs,duracao,tipos{escolha});
+            do_maior = do + mi + sol;
+            la_menor = la + do + mi;  
+            sound(do_maior, fs);   %Representa um timbre mais grave
+            sound(la_menor, fs);
+        end 
+        if(escolha == 6)
+            break;
+        end
+end
