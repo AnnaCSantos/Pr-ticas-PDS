@@ -1,6 +1,6 @@
 Partes feitas:
 
-4.1 - Funções:"geraNota", "vibrato"
+4.1 - Funções:"geraNota", "vibrato", "tremolo"
 
 4.2 - Teste de notas para cada tipo de onda
 
