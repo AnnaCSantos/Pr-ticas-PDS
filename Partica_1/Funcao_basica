@@ -1,0 +1,28 @@
+%f0 -> Frequência fundamental (Frequência das notas)
+%fs -> frequencia de amostragem
+
+
+fs = 48000;
+duracao = 4;
+
+function nota = geraNota(f0, fs, duracao, tipo)
+t = 0:1/fs:duracao; % Tempo de amostragem
+
+%Cria uma nota com base no tipo de onda
+    switch tipo
+        case 'seno'
+            nota = sin(2*pi*f0*t);
+        case 'quadrada'
+            nota = square(2*pi*f0*t);
+        case 'serra'
+            nota = sawtooth(2*pi*f0*t, 1);
+        case 'triangular'
+            nota = sawtooth(2*pi*f0*t, 0.5);
+        %case 'ruido'
+         %   nota = 0.5 * randn(size(t));
+        otherwise
+            error('Tipo de onda desconhecido');
+    end%$Switch
+end%%Function
+nota_la = geraNota(329.63,48000,4,'serra');
+%sound(nota_la,48000)
