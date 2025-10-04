@@ -7,3 +7,4 @@ Partes feitas:
 4.3 - Acordes com diferentes tipos de onda
 
 
+Observação: Inicialmente tufo foi feito em apenas um arquivo, irei separar depois
