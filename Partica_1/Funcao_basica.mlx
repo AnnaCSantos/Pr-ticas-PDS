@@ -1,9 +1,30 @@
 %f0 -> Frequência fundamental (Frequência das notas)
 %fs -> frequencia de amostragem
 
-
+duracao = 3;
 fs = 48000;
-duracao = 4;
+% ====================================
+%           Área de Teste:
+% ====================================
+%la = geraNota(440,fs,duracao,'serra');
+%la = geraNota(440,fs,duracao,'seno');
+%la = geraNota(440,fs,duracao,'quadrada');
+%la = geraNota(440,fs,duracao,'triangular');
+%sound(la,fs)
+
+%do = geraNota(261.63,fs,duracao,'serra');
+%do = geraNota(261.63,fs,duracao,'seno');
+%do = geraNota(261.63,fs,duracao,'quadrada');
+%do = geraNota(261.63,fs,duracao,'triangular');
+%sound(do,fs)
+
+%mi = geraNota(329.63,fs,duracao,'serra');
+%mi = geraNota(329.63,fs,duracao,'seno');
+%mi = geraNota(329.63,fs,duracao,'quadrada');
+%mi = geraNota(329.63,fs,duracao,'triangular');
+%sound(mi,fs)
+
+%======================================
 
 function nota = geraNota(f0, fs, duracao, tipo)
 t = 0:1/fs:duracao; % Tempo de amostragem
@@ -24,5 +45,3 @@ t = 0:1/fs:duracao; % Tempo de amostragem
             error('Tipo de onda desconhecido');
     end%$Switch
 end%%Function
-nota_la = geraNota(329.63,48000,4,'serra');
-%sound(nota_la,48000)
